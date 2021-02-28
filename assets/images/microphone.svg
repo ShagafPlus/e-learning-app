@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31.17" height="47.795" viewBox="0 0 31.17 47.795">
+  <g id="microphone" transform="translate(-64)">
+    <g id="Group_9696" data-name="Group 9696" transform="translate(70.234)">
+      <g id="Group_9695" data-name="Group 9695" transform="translate(0)">
+        <path id="Path_4790" data-name="Path 4790" d="M121.351,0A9.554,9.554,0,0,0,112,9.722V23.9a9.358,9.358,0,1,0,18.7,0V9.722A9.554,9.554,0,0,0,121.351,0Zm0,31.541a7.411,7.411,0,0,1-7.2-6.605h14.4A7.408,7.408,0,0,1,121.351,31.541Zm7.273-8.683H114.078V9.722a7.282,7.282,0,1,1,14.546,0Z" transform="translate(-112)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Group_9698" data-name="Group 9698" transform="translate(64 18.702)">
+      <g id="Group_9697" data-name="Group 9697" transform="translate(0)">
+        <path id="Path_4791" data-name="Path 4791" d="M94.131,144a1.039,1.039,0,0,0-1.039,1.039V149.2a13.507,13.507,0,0,1-27.014,0v-4.156a1.039,1.039,0,1,0-2.078,0V149.2a15.592,15.592,0,0,0,14.546,15.532v6.287h-5.2a1.039,1.039,0,0,0,0,2.078H85.819a1.039,1.039,0,0,0,0-2.078h-5.2v-6.287A15.592,15.592,0,0,0,95.17,149.2v-4.156A1.039,1.039,0,0,0,94.131,144Z" transform="translate(-64 -144)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
