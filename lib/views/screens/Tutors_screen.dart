@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
+import 'package:manahil/views/widgets/loading_widget.dart';
 
 class TutorialScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,9 +95,26 @@ class TutorsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 230, left: 15, right: 15),
+      padding: const EdgeInsets.only(top: 200, left: 15, right: 15),
       child: ListView(
         children: [
+          Loading(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Chip(
+                label: Text('All',
+                  style: TextStyle(color: Colors.white,),
+                ),
+                backgroundColor: appTheme().primaryColor,),
+              Chip(label: Text('Mathematics',
+                style: TextStyle(color: appTheme().primaryColor,),
+              ),
+                backgroundColor: Colors.white,),
+            ],
+          ),
+
+
           Card(
             //margin: EdgeInsets.only(left: 20,right: 20,bottom: 0),
             child: ListTile(

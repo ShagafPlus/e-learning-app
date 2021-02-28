@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'views/screens/appBottomBar.dart';
+import 'views/widgets/loading_widget.dart';
 
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Manahil',
     // theme: appTheme(),
-      home: ManahilBottomBar(),
+      home: Loading(),
     );
   }
 }

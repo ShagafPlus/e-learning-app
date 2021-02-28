@@ -78,9 +78,27 @@ class DiscoverCourseBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 260, left: 40, right: 40),
+      padding: const EdgeInsets.only(top: 190, left: 40, right: 40),
       child: ListView(
         children: <Widget>[
+          
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Chip(
+                label: Text('Available Now',
+                style: TextStyle(color: Colors.white,),
+                ),
+                backgroundColor: appTheme().primaryColor,
+              ),
+              Chip(
+                label: Text('Available Now',
+                style: TextStyle(color: appTheme().primaryColor,),
+              ),
+                backgroundColor: Colors.white,),
+            ],
+          ),
+          
           Card(
             //margin: EdgeInsets.only(top: 1,),
             child: Column(
@@ -133,10 +151,13 @@ class DiscoverCourseBody extends StatelessWidget {
                     child: ListTile(
                         trailing: CircleAvatar(
                             backgroundColor:appTheme().primaryColor,
-                            child: Icon(Icons.arrow_forward_outlined,color: Colors.white,)),
+                            child: Icon(Icons.arrow_forward_outlined,color: Colors.white,),
+                        ),
                         title: Text(
-                            'Enrol Now', style: TextStyle(color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                            'Enrol Now',
+                          style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                        textAlign: TextAlign.center,
                         ),
