@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'views/screens/appBottomBar.dart';
 import 'views/widgets/loading_widget.dart';
 
 

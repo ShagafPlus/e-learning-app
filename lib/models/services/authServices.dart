@@ -1,9 +1,4 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-//import 'package:http/http.dart' as http;
-import 'package:manahil/models/helpers/http_exception.dart';
 
-import '../constants.dart';
 abstract class AuthService{
   Future<void> login(String email, String password);
   Future<void> signUp(String name, String email, String password);
