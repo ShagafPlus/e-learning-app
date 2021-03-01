@@ -3,7 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
+import 'signup_screen.dart';
+
 class LoginScreen extends StatelessWidget {
+  static const routeName = '/login';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,7 +180,7 @@ class _CardBodyState extends State<CardBody> {
       RaisedButton(
               color: appTheme().primaryColorDark,
               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 150),
-              onPressed: (){},
+              onPressed: (){}, //main page
               child: Text('Login',
                   style: TextStyle(fontSize: 20, color: Colors.white)),
             ),
@@ -185,7 +188,9 @@ class _CardBodyState extends State<CardBody> {
           RaisedButton(
             color: Colors.white,
             padding: EdgeInsets.symmetric(vertical: 15, horizontal: 140),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.of(context).pushNamed(SignUpScreen.routeName);
+            },
             child: Text('Sign Up',
                 style: TextStyle(
                     fontSize: 20, color: Colors.black)),

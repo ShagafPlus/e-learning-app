@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
 class ManahilBottomBar extends StatefulWidget {
+  static const routeName = '/ManahilBottomBar';
   @override
   _ManahilBottomBarState createState() => _ManahilBottomBarState();
 }

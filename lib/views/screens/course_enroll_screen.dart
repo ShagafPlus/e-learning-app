@@ -7,6 +7,7 @@ import '../widgets/appTheme.dart';
 
 
 class CourseEnroll extends StatelessWidget {
+  static const routeName = '/CourseEnroll';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

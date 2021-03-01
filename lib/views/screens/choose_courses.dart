@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:manahil/views/screens/signup_screen.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
+import 'choose_plan.dart';
+
 class ChooseCourses extends StatelessWidget {
+  static const routeName = '/ChooseCourses';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,10 +59,9 @@ class RegisterButton extends StatelessWidget {
           color: appTheme().primaryColorDark,
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 120),
           onPressed: (){
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => SignUpScreen()),
-            );
+            Navigator.of(context).pushNamed(ChoosePlan.routeName);
           },
+          //registering courses
           child: Text('Register',
               style: TextStyle(fontSize: 20, color: Colors.white)),
         ),

@@ -8,6 +8,7 @@ import '../widgets/appTheme.dart';
 
 
 class ChoosePlan extends StatefulWidget {
+  static const routeName = '/ChoosePlan';
   @override
   _ChoosePlanState createState() => _ChoosePlanState();
 }

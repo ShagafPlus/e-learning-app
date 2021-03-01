@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:manahil/views/screens/login_screen.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
+import 'choose_courses.dart';
+
 
 class SignUpScreen extends StatelessWidget {
+  static const routeName = '/signUp';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,7 +187,10 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
             RaisedButton(
               color: appTheme().primaryColorDark,
               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 150),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.of(context).pushNamed(ChooseCourses.routeName);
+
+              },
               child: Text('Sign Up',
                   style: TextStyle(fontSize: 20, color: Colors.white)),
             ),
@@ -197,9 +203,7 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
                   Text('Already Member?'),
                   SizedBox(width: 10,),
                   InkWell(onTap: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => LoginScreen()),
-                    );
+            Navigator.of(context).pushNamed(LoginScreen.routeName);
                   },
                     child: Text('Login',
                         style:
