@@ -1,11 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:manahil/views/widgets/loading_widget.dart';
 import '../widgets/appTheme.dart';
 
-
+///////////
 class CourseEnroll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,6 @@ class CourseEnroll extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 10,),
-
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -52,13 +50,20 @@ class CourseEnroll extends StatelessWidget {
               SizedBox(height: 15,)
 
             ],
-          ), //to show the clock
+          ),
+          //to show the clock
+      Container(
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(topRight: Radius.circular(30),
+                topLeft: Radius.circular(30)),
+            color: Colors.white),
+            child:courseInstructor(),
+      ),
 
           Expanded(
             child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(30),
-                        topLeft: Radius.circular(30)),
                     color: Colors.white),
                 child: ListView.builder(
                         itemCount: 3,
@@ -184,7 +189,10 @@ Widget enrollNowButton() {
       icon:  Icon(Icons.arrow_back_ios, color: appTheme().backgroundColor),
       color: appTheme().primaryColor,
       padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
-      onPressed: (){},
+      onPressed: (){
+
+        Waiting();
+      },
     ),
   );
 }

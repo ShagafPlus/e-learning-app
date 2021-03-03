@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:manahil/models/helpers/http_exception.dart';
 
 import '../constants.dart';
-abstract class AuthService{
+ abstract class AuthService{
   Future<void> login(String email, String password);
   Future<void> signUp(String name, String email, String password);
 }
-
 
 
 class Auth implements AuthService{
@@ -24,7 +23,6 @@ class Auth implements AuthService{
        'email':'$email',
          'password':'$password'
        }
-
      );
      final responseData = json.decode(response.body);
      if(response.statusCode == 200){

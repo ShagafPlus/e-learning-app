@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
-
+import 'package:manahil/providers/user_provider.dart';
+// import 'providers/languageProvider.dart';
+// import 'views/intro_screens/splash_screen.dart';
 import 'views/screens/appBottomBar.dart';
-
+import 'views/screens/choose_courses.dart';
+import 'views/screens/choose_plan.dart';
+import 'views/screens/course_enroll_screen.dart';
+import 'views/screens/login_screen.dart';
+import 'views/screens/signup_screen.dart';
+import 'views/widgets/loading_widget.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=>UserProvider()),
+      ],
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,8 +26,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Manahil',
-    // theme: appTheme(),
-      home: ManahilBottomBar(),
+      // theme: appTheme(),
+      home: LoginScreen(),
+      routes: {
+/*
+        LoginScreen.routeName:(ctx)=>LoginScreen(),
+        SignUpScreen.routeName:(ctx)=>SignUpScreen(),
+        ChooseCourses.routeName:(ctx)=>ChooseCourses(),
+        ChoosePlan.routeName:(ctx)=>ChoosePlan(),
+        ManahilBottomBar.routeName:(ctx)=>ManahilBottomBar(),
+        CourseEnroll.routeName:(ctx)=>CourseEnroll(),
+*/
+      }, // Defining app routes
     );
   }
 }
+
+//how to use it :
+//Navigator.of(context).pushNamed(screenName.routeName);

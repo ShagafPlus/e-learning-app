@@ -1,4 +1,6 @@
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
 class ManahilBottomBar extends StatefulWidget {
@@ -7,49 +9,39 @@ class ManahilBottomBar extends StatefulWidget {
 }
 
 class _ManahilBottomBarState extends State<ManahilBottomBar> {
-  int _selectedIndex = 0;
-
-  void _onItemTap(int value) {
-    setState(() {
-      _selectedIndex = value;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      backgroundColor: appTheme().backgroundColor,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: appTheme().primaryColorDark,
-        unselectedItemColor: appTheme().bottomAppBarColor,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            title: Text('Course'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            title: Text('Notifications'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            title: Text('Person'),
-          ),
-        ],
-        onTap: _onItemTap,
-        currentIndex: _selectedIndex,
+      body: Container(
+        color: appTheme().backgroundColor,
+        height: height,
+        width: width,
+
       ),
-      body: [
-        Icon(Icons.home_outlined),
-        Icon(Icons.calendar_today),
-        Icon(Icons.notifications),
-        Icon(Icons.person_outline),
-      ].elementAt(_selectedIndex),
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 52.0,
+        color: Colors.lightBlueAccent,
+        backgroundColor: appTheme().backgroundColor,
+        buttonBackgroundColor: appTheme().primaryColor,
+        items: [
+        Icon(Icons.home,size: 20,color: appTheme().scaffoldBackgroundColor,),
+        Icon(Icons.access_alarm,size: 20,color: appTheme().scaffoldBackgroundColor,),
+        Icon(Icons.notification_important,size: 20,color: appTheme().scaffoldBackgroundColor,),
+        Icon(Icons.person,size: 20,color: appTheme().scaffoldBackgroundColor,),
+      ],
+      animationDuration: Duration(
+        milliseconds: 200,
+      ),
+      animationCurve: Curves.bounceInOut,
+      index: 0,
+      onTap: (index){
+
+      },
+      ),
     );
   }
 }

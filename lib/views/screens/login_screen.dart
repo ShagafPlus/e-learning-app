@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'file:///F:/FLUTTER21/e-learning-app-main/lib/models/helpers/user/user_login.dart';
+import 'package:manahil/models/services/auth_services.dart';
+import 'package:manahil/providers/user_provider.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -93,9 +98,13 @@ class CardBody extends StatefulWidget {
 }
 
 class _CardBodyState extends State<CardBody> {
+
+  String _email, _password;
+
   final GlobalKey<FormState> _formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    final ProgressDialog progressDialog = ProgressDialog(context);
     final deviceSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: 210,left: 20,right: 20),
@@ -127,11 +136,15 @@ class _CardBodyState extends State<CardBody> {
                         child: Column(
                           children: [
                             TextFormField(
+                              onSaved: (value) => _email = value,
                               enabled: true,
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                   fillColor: appTheme().backgroundColor,
-                                  suffixIcon: Icon(Icons.check_circle, color: Colors.green,),
+                                  suffixIcon: Icon(
+                                    Icons.check_circle,
+                                    color: Colors.green,
+                                  ),
                                   labelText: 'Email Address'
                               ),
                             ),
@@ -140,6 +153,7 @@ class _CardBodyState extends State<CardBody> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
                                 child: TextFormField(
+                                  onSaved: (value) => _password = value,
                                   obscureText: true,
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
@@ -167,7 +181,7 @@ class _CardBodyState extends State<CardBody> {
                 style:
                 TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
           ),
-          SizedBox(width: 150,),
+          Spacer(),
           InkWell(onTap: (){},
             child: Text('Forgot Password ?',
                 style:
@@ -176,15 +190,22 @@ class _CardBodyState extends State<CardBody> {
         ],),
       RaisedButton(
               color: appTheme().primaryColorDark,
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 150),
-              onPressed: (){},
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 120),
+              onPressed: (){
+                // check data here before send it
+
+                final form = _formKey.currentState;
+                form.save();
+                progressDialog.show();
+                doLogin(_email,_password,progressDialog);
+              },
               child: Text('Login',
                   style: TextStyle(fontSize: 20, color: Colors.white)),
             ),
           SizedBox(height: 10,),
           RaisedButton(
             color: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 140),
+            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 113),
             onPressed: (){},
             child: Text('Sign Up',
                 style: TextStyle(
@@ -199,5 +220,28 @@ class _CardBodyState extends State<CardBody> {
       ),
 
     );
+  }
+
+  void doLogin(String email, String password,ProgressDialog progressDialog) {
+    AuthServiceProvider authServiceProvider = new AuthServiceProvider();
+    authServiceProvider.login(email, password).then((response) {
+      if (response['status']) {
+        User user = response['data'];
+        Provider.of<UserProvider>(context, listen: false).setUser(user);
+        print('Suuuuuuuuuuuuuccccccccccccccccccccceeeessssss\t'+response['data'].toString());
+        progressDialog.hide();
+        // Todo you should navigate to another
+      } else {
+
+        // Flushbar(
+        //   title: "Registration Failed",
+        //   message: response.toString(),
+        //   duration: Duration(seconds: 10),
+        // ).show(context);
+        progressDialog.hide();
+        print('errrrrrrrrrrrrrrrrrrrrooooorrr\t'+response.toString());
+
+      }
+    });
   }
 }

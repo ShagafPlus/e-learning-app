@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
+import '../widgets/appTheme.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,9 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber,
-      ),
       backgroundColor: appTheme().backgroundColor,
       body: Stack(
         children: <Widget>[
@@ -107,7 +105,7 @@ class CardsBody extends StatelessWidget {
       child: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 15,left: 20),
+            padding: const EdgeInsets.only(right: 15),
             child: Text(
               'My Courses',
               style: TextStyle(
@@ -147,16 +145,13 @@ class CardsBody extends StatelessWidget {
                 Column(
 
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 200),
-                      child: Text(
-                        'Popular Courses',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                    Text(
+                      'Popular Courses',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
 

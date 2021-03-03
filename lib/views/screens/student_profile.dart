@@ -8,7 +8,7 @@ import 'package:manahil/views/screens/profile_other.dart';
 import 'package:manahil/views/screens/profile_progress.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
-
+import '../widgets/appTheme.dart';
 
 class StudentProfile extends StatefulWidget {
   @override

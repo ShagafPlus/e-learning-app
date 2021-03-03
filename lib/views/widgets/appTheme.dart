@@ -11,7 +11,7 @@ ThemeData appTheme() {
     hintColor: Color(0xff82858C), // for search hint test in the home page
     dividerColor: Color(0xff1967B0).withOpacity(0.5),
     buttonColor: Color(0xff00D8D0),
-    scaffoldBackgroundColor: Color(0xffF8F8F8),
+    scaffoldBackgroundColor: Color(0xfff8f8f8),
     canvasColor: Color(0x22EFF2F4),
   );
 }

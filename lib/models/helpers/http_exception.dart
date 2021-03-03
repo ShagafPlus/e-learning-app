@@ -1,4 +1,5 @@
 class HttpException {
+
   final String message;
 
   HttpException(this.message);

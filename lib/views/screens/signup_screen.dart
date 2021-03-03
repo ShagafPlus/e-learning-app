@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'file:///F:/FLUTTER21/e-learning-app-main/lib/models/helpers/user/user_login.dart';
+import 'package:manahil/models/services/auth_services.dart';
+import 'package:manahil/providers/user_provider.dart';
 import 'package:manahil/views/screens/login_screen.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+import 'package:provider/provider.dart';
 
 
 class SignUpScreen extends StatelessWidget {
@@ -92,9 +97,13 @@ class SignUpCardBody extends StatefulWidget {
 }
 
 class _SignUpCardBodyState extends State<SignUpCardBody> {
+
   final GlobalKey<FormState> _formKey = GlobalKey();
+  String name, email, phone, password;
+
   @override
   Widget build(BuildContext context) {
+    final ProgressDialog progressDialog = ProgressDialog(context);
     final deviceSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: 210,left: 20,right: 20),
@@ -108,7 +117,7 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
               ),
               elevation: 8.0,
               child: Container(
-                height: deviceSize.height * 0.40,
+                height: deviceSize.height * 0.45,
                 width: deviceSize.width * 0.88,
                 //padding: const EdgeInsets.only(sleft: 15,right: 0),
                 padding: EdgeInsets.all(16.0),
@@ -126,6 +135,7 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
                           child: Column(
                             children: [
                               TextFormField(
+                                onSaved: (value) => name = value,
                                 enabled: true,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
@@ -136,23 +146,25 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
                                 ),
                               ),
                               TextFormField(
+                                onSaved: (value) => email = value,
                                 enabled: true,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     fillColor: appTheme().backgroundColor,
                                     suffixIcon: Icon(Icons.check_circle, color: Colors.green,),
                                     labelText: 'Email Address',
-                                  hintText: 'email@egmail.com'
+                                  hintText: 'email@mail.com'
                                 ),
                               ),
                               TextFormField(
+                                onSaved: (value) => phone = value,
                                 enabled: true,
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                     fillColor: appTheme().backgroundColor,
                                     suffixIcon: Icon(Icons.check_circle, color: Colors.green,),
                                     labelText: 'Mobile Number',
-                                    hintText: '2499xxxxxxxxx'
+                                    hintText: '249xxxxxxxxx'
                                 ),
                               ),
                               Padding(
@@ -160,6 +172,7 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   child: TextFormField(
+                                    onSaved: (value) => password = value,
                                     obscureText: true,
                                     keyboardType: TextInputType.text,
                                     decoration: InputDecoration(
@@ -183,8 +196,13 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
             SizedBox(height: 20,),
             RaisedButton(
               color: appTheme().primaryColorDark,
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 150),
-              onPressed: (){},
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 110),
+              onPressed: (){
+                final form = _formKey.currentState;
+                form.save();
+                //progressDialog.show();
+                doRegister(name,email,phone,password,progressDialog);
+              },
               child: Text('Sign Up',
                   style: TextStyle(fontSize: 20, color: Colors.white)),
             ),
@@ -210,9 +228,31 @@ class _SignUpCardBodyState extends State<SignUpCardBody> {
                 ],
               ),
             ),
-          ],)
+          ],
+          ),
       ),
 
     );
+  }
+
+  void doRegister(String name,String email, String phone, String password,ProgressDialog progressDialog) {
+     progressDialog.show();
+
+    print('name '+ name.toString());
+    AuthServiceProvider authServiceProvider = new AuthServiceProvider();
+    authServiceProvider.register(name, email, phone, password).then((response) {
+      if (response['status']) {
+        progressDialog.hide();
+        // Todo notify user by successful & empty fields
+        User user = response['data'];
+        Provider.of<UserProvider>(context, listen: false).setUser(user);
+        print('Suuuuuuuuuuuuuccccccccccccccccccccceeeessssss\t'+response['data'].toString());
+      } else {
+        progressDialog.hide();
+        // Todo notify user by error
+        print('errrrrrrrrrrrrrrrrrrrrooooorrr\t'+response.toString());
+
+      }
+    });
   }
 }

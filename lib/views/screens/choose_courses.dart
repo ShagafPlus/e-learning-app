@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:manahil/views/screens/signup_screen.dart';
 import 'package:manahil/views/widgets/appTheme.dart';
 
 class ChooseCourses extends StatelessWidget {
@@ -54,11 +53,7 @@ class RegisterButton extends StatelessWidget {
         child: RaisedButton(
           color: appTheme().primaryColorDark,
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 120),
-          onPressed: (){
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => SignUpScreen()),
-            );
-          },
+          onPressed: (){},
           child: Text('Register',
               style: TextStyle(fontSize: 20, color: Colors.white)),
         ),
